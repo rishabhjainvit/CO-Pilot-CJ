@@ -153,5 +153,58 @@ function findDuplicates(arr) {
     navigator.clipboard.writeText('Hello, World!');
     navigator.geolocation.getCurrentPosition(position => console.log(position));
     navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    
+
+
+    /******************************************************* */
+     //wrinting a mongosse logic for the backend in this its mentioned
+     // that data will be stored in a mongodb but also going to be fetched into our vs code terminal side by side in the form of table 
+    // filepath: /C:/Users/RISHABH JAIN/Downloads/Co-Pilot/server.js
+    //******************************************************************************* */
+const express = require('express');
+const { MongoClient } = require('mongodb');
+const Table = require('cli-table');
+
+const app = express();
+const port = 3000;
+
+// MongoDB connection URI
+const uri = 'your_mongodb_connection_string';
+
+// Function to fetch and display data
+async function fetchData() {
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+  try {
+    await client.connect();
+    const database = client.db('your_database_name');
+    const collection = database.collection('your_collection_name');
+
+    const data = await collection.find({}).toArray();
+
+    const table = new Table({
+      head: ['Field1', 'Field2', 'Field3'], // Replace with your field names
+      colWidths: [20, 20, 20] // Adjust column widths as needed
+    });
+
+    data.forEach(item => {
+      table.push([item.field1, item.field2, item.field3]); // Replace with your field names
+    });
+
+    console.log(table.toString());
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.close();
+  }
+}
+
+// Endpoint to trigger data fetch and display
+app.get('/fetch-data', async (req, res) => {
+  await fetchData();
+  res.send('Data fetched and displayed in terminal.');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
   
