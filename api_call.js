@@ -103,4 +103,55 @@ function findDuplicates(arr) {
     }
     return duplicates;
   }
+
+  function findDuplicates(arr) {
+    const duplicates = [];
+    const seen = new Set();
+  
+    for (const item of arr) {
+      if (seen.has(item)) {
+        duplicates.push(item);
+      } else {
+        seen.add(item);
+      }
+    }
+    return duplicates;
+  }
+
+  function findDuplicates(arr) {
+    const duplicates = [];
+    const seen = new Set();
+  
+    for (const item of arr) {
+      if (seen.has(item)) {
+        duplicates.push(item);
+      } else {
+        seen.add(item);
+      }
+    }
+    return duplicates;
+  } 
+
+  test('findDuplicates', () => {
+    expect(findDuplicates([1, 2, 3, 4, 5, 2, 3, 4, 6])).toEqual([2, 3, 4]);
+  });
+
+    test('findDuplicates', () => {
+    expect(findDuplicates([1, 2, 3, 4, 5, 2, 3, 4, 6])).toEqual([2, 3, 4]);
+    });
+    
+    getComputedStyle(document.body).backgroundColor;
+
+    KeyboardEvent.key;
+    alert('Hello, World!');
+    console.log('Hello, World!');
+    console.error('Hello, World!');
+
+    delete obj.key;
+    delete obj['key'];
+
+    navigator.clipboard.writeText('Hello, World!');
+    navigator.geolocation.getCurrentPosition(position => console.log(position));
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    
   
